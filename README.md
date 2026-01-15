@@ -19,4 +19,4 @@ keyboard.h
 sd.h
 vss 
 
-> if you want to contact me, then reach me on discord: .pixellox
+> if you want to contact me, then reach me on discord: @.pixellox
